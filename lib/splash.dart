@@ -20,7 +20,7 @@ class SplashScreenState extends State<SplashScreen> {
       setState(() {
         _showLogo = true;
       });
-      // Navigator.of(context).pushReplacement(
+      // Navigator.of(contex    t).pushReplacement(
       //   MaterialPageRoute(builder: (_) => HomeScreen()),
       // );
     });
