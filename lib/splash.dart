@@ -39,7 +39,7 @@ class SplashScreenState extends State<SplashScreen> {
                 opacity: _showLogo ? 1.0 : 0.0,
                 duration: const Duration(seconds: 1),
                 child: Image.asset(
-                  'assets/splash.png', // Replace with your logo image asset
+                  'assets/splashs.png', // Replace with your logo image asset
                   width: 200.0,
                   height: 200.0,
                 ),
