@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fresh_and_local/intro_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,9 +21,9 @@ class SplashScreenState extends State<SplashScreen> {
       setState(() {
         _showLogo = true;
       });
-      // Navigator.of(contex    t).pushReplacement(
-      //   MaterialPageRoute(builder: (_) => HomeScreen()),
-      // );
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) =>SliderScreen()),
+      );
     });
   }
 
@@ -33,15 +34,15 @@ class SplashScreenState extends State<SplashScreen> {
         children: [
           AnimatedContainer(
             duration: const Duration(seconds: 2),
-            color: Colors.blue, // Change to your background color
+            //color: Colors.blue, // Change to your background color
             child: Center(
               child: AnimatedOpacity(
                 opacity: _showLogo ? 1.0 : 0.0,
-                duration: const Duration(seconds: 1),
+                duration: const Duration(seconds: 2),
                 child: Image.asset(
-                  'assets/splashs.png', // Replace with your logo image asset
-                  width: 200.0,
-                  height: 200.0,
+                  'assets/images/splash.png', // Replace with your logo image asset
+                  width: 500.0,
+                  height: 500.0,
                 ),
               ),
             ),
