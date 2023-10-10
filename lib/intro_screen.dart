@@ -37,6 +37,8 @@ class SliderScreenState extends State<SliderScreen> {
     pageController.addListener(() {
       setState(() {
         currentIndex = pageController.page!.toInt();
+
+        //////////Shubham Comment////////
       });
     });
 
