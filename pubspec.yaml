@@ -66,6 +66,7 @@ flutter:
      - assets/images/splash.png
      - assets/images/markus-spiske-i5tesTFPBjw-unsplash 1.png
      - assets/images/apple.png
+     - assets/images/loginLady.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

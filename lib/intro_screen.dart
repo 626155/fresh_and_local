@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'login_screen.dart';
+
 class SliderScreen extends StatefulWidget {
   @override
   SliderScreenState createState() => SliderScreenState();
@@ -172,16 +174,20 @@ class SlideItemWidget extends StatelessWidget {
                   height: 50.0, // Set the desired height
                   child: ElevatedButton(
                     onPressed: () {
-                      if (screenState.currentIndex < screenState.slides.length - 1) {
-                        // Move to the next slide using PageController
-                        screenState.pageController.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOutBack,
-                        );
-                      } else {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (_) => LoginScreen()),
+                      );
+                      // if (screenState.currentIndex < screenState.slides.length - 1) {
+                      //   // Move to the next slide using PageController
+                      //   screenState.pageController.nextPage(
+                      //     duration: const Duration(milliseconds: 300),
+                      //     curve: Curves.easeInOutBack,
+                      //   );
+                      // } else {
+
                         // Navigate to the next screen or perform some action
                         // when the last slide is reached
-                      }
+                      // }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0x406CC51D), // Set button color
