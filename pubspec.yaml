@@ -30,15 +30,23 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter  
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  provider: ^6.0.5
+  intl: ^0.18.1
+  http: ^1.1.0
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  integration_test:
+    sdk: flutter  
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -50,6 +58,15 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
+flutter_intl:
+  enabled: true
+  class_name: S
+  main_locale: en_US
+  arb_dir: lib/localization
+  output_dir: lib/localization/generated
+  output-localization-file: l10n.dart
+
+
 # The following section is specific to Flutter packages.
 flutter:
 
@@ -57,6 +74,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
   # assets:
