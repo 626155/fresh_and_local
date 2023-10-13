@@ -1,39 +1,77 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:fresh_and_local/splash.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:fresh_and_local/features/language_selection/view_model/language_selection_view_model.dart';
+import 'package:fresh_and_local/localization/generated/l10n.dart';
+import 'package:fresh_and_local/utils/routes/routes.dart';
+import 'package:fresh_and_local/utils/routes/routes_name.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  LanguageSelectionViewModel languageSelectionViewModel = LanguageSelectionViewModel();
+  await languageSelectionViewModel.fetchLocale();
+  HttpOverrides.global = MyHttpOverrides();
+  runApp(MyApp(
+    languageSelectionViewModel: languageSelectionViewModel,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final LanguageSelectionViewModel languageSelectionViewModel;
+  const MyApp({Key? key, required this.languageSelectionViewModel})
+      : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => languageSelectionViewModel),
+      ],
+      child: ChangeNotifierProvider<LanguageSelectionViewModel>(
+        create: (BuildContext context) => languageSelectionViewModel,
+        child: Consumer<LanguageSelectionViewModel>(
+            builder: (context, language, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: "fresh and local",
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+              disabledColor: Colors.grey,
+            ),
+            locale: language.locale,
+            supportedLocales: S.delegate.supportedLocales,
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            localeResolutionCallback: (locale, supportedLocales) {
+              for (var supportedLocale in supportedLocales) {
+                if (supportedLocale.languageCode == locale!.languageCode &&
+                    supportedLocale.countryCode == locale.countryCode) {
+                  return supportedLocale;
+                }
+              }
+              return supportedLocales.first;
+            },
+            initialRoute: RoutesName.languageSelection,
+            onGenerateRoute: Routes.generateRoute,
+          );
+        }),
       ),
-      home: const SplashScreen(),
     );
   }
 }
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    // TODO: implement createHttpClient
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
