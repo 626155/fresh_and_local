@@ -9,8 +9,7 @@ class LanguageSelectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language =
-        Provider.of<LanguageSelectionViewModel>(context, listen: false);
+    final language = Provider.of<LanguageSelectionViewModel>(context, listen: false);
     var languageList = [
       LanguageList(
           id: 1,
@@ -105,6 +104,30 @@ class LanguageSelectionView extends StatelessWidget {
                   );
                 });
           },
+        ),
+      ),
+      bottomNavigationBar: Container(
+        decoration:  const BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xff827c03),
+              offset:  Offset(0.0, 10.0),
+              blurRadius: 20.0,
+            )
+          ],
+        ),
+        height: 70,
+        child : Padding(
+          padding: const EdgeInsets.all(10.0),
+          child:  ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xff827c03), // background
+              ),
+              onPressed: () async {
+
+              },
+              child: const Text("Next",textScaleFactor: 1,)),
         ),
       ),
     );
