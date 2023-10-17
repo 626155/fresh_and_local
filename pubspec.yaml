@@ -54,6 +54,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  flutter_native_splash: ^2.3.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -66,13 +67,18 @@ flutter_intl:
   output_dir: lib/localization/generated
   output-localization-file: l10n.dart
 
-  flutter_native_splash: ^2.3.4
+
 
 flutter_native_splash:
   android: true
   ios: true
   web: true
-  color: hhhh
+  color: "#382a02"
+  android_gravity: fill
+  image: "assets/images/splash.png"
+  image_dark: "assets/images/splash.png"
+  ios_content_mode: scaleAspectfill
+
 
 # The following section is specific to Flutter packages.
 flutter:
