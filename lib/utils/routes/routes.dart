@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fresh_and_local/features/language_selection/view/language_selection_view.dart';
+import 'package:fresh_and_local/features/splash_screen/view/splash_screen_view.dart';
 import 'package:fresh_and_local/utils/routes/routes_name.dart';
 
 class Routes {
@@ -10,6 +11,9 @@ class Routes {
       case RoutesName.languageSelection:
         LanguageSelectionView languageSelectionView = const LanguageSelectionView();
         return createRoute(languageSelectionView);
+      case RoutesName.splashScreen:
+        SplashScreenView splashScreenView = const SplashScreenView();
+        return createRoute(splashScreenView);
 
       default:
         return MaterialPageRoute(builder: (_) {
